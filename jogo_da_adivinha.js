@@ -1,42 +1,41 @@
-const pulaLinha = function() {
-        document.write('<br><br>');
-}
-
-const mostra = function(frase) {
-        document.write(frase)
-        pulaLinha()
-}
-
 const sorteia = function(n) {
        return Math.round(Math.random() * n);
-}
+    }
 
-let numeroPensado = sorteia(10);
+    var input = document.querySelector('input');
+    input.focus();
 
-let tentativas = 1;
+    let segredo = sorteia(10);
 
-while (tentativas <= 3) {
+    let tentativas = 1;
 
-let chute = parseInt(prompt("Já pensei. Qual número de 1 a 10 você acha que é?"));
+    function verifica() {
 
-if(chute == numeroPensado) {
+    if (tentativas == 3) {
 
-  mostra("Uau! Você acertou, pois eu pensei no " + numeroPensado);
-  break;
+        alert("Suas tentantivas acabaram! Fim de jogo!")
 
-} else {
+    }
 
-  if (chute > numeroPensado) {
+    if (tentativas < 3) {
 
-    mostra("Você errou! Seu número é maior que o número pensado!");
+        if(input.value == segredo) {
 
-  } else {
+        alert("Você Acertou! Eu pensei em " + segredo);       
 
-    mostra("Você errou! Seu número é menor que o número pensado!")
-  } 
+        } else {
 
-  }
+            alert("Você errou! Tente de novo!");
+            tentativas++;
 
-    tentativas++
+        }  
 
-}
+    }
+
+    input.value = "";
+    input.focus();
+
+    }
+
+    let button = document.querySelector('button');
+    button.onclick = verifica;
