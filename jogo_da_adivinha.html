@@ -1,48 +1,53 @@
 <meta charset="UTF-8">
 
+<h1>Jogo da adivinhação</h1>
+
+<h3>Em qual número de 0 a 10 eu pensei?</h3>
+<input/>
+<button>Veja se acertou</button>
+
 <script>
-
-    const pulaLinha = function() {
-        document.write('<br><br>');
-    }
-
-    const mostra = function(frase) {
-        document.write(frase)
-        pulaLinha()
-    }
 
     const sorteia = function(n) {
        return Math.round(Math.random() * n);
     }
 
-    let numeroPensado = sorteia(10);
+    var input = document.querySelector('input');
+    input.focus();
+
+    let segredo = sorteia(10);
 
     let tentativas = 1;
 
-    while (tentativas <= 3) {
+    function verifica() {
 
-    let chute = parseInt(prompt("Já pensei. Qual número de 1 a 10 você acha que é?"));
+    if (tentativas == 3) {
 
-        if(chute == numeroPensado) {
+        alert("Suas tentantivas acabaram! Fim de jogo!")
 
-        mostra("Uau! Você acertou, pois eu pensei no " + numeroPensado);
-        break;
+    }
+
+    if (tentativas < 3) {
+
+        if(input.value == segredo) {
+
+        alert("Você Acertou! Eu pensei em " + segredo);       
 
         } else {
 
-            if (chute > numeroPensado) {
+            alert("Você errou! Tente de novo!");
+            tentativas++;
 
-            mostra("Você errou! Seu número é maior que o número pensado!");
-
-            } else {
-
-            mostra("Você errou! Seu número é menor que o número pensado!")
-            } 
-
-        }
-
-        tentativas++
+        }  
 
     }
-    
+
+    input.value = "";
+    input.focus();
+
+    }
+
+    let button = document.querySelector('button');
+    button.onclick = verifica;
+
 </script>
