@@ -3,7 +3,7 @@
 <div style="text-align:center"><h1>Jogo da adivinhação</h1>
 
 <h3>Em qual número de 0 a 10 eu pensei?</h3>
-<input/>
+<input type="number">
 <button>Veja se acertou</button></div>
 
 <script>
@@ -12,8 +12,8 @@
        return Math.round(Math.random() * n);
     }
 
-    var input = document.querySelector('input');
-    input.focus();
+    var numeroDigitado = document.querySelector('input');
+    numeroDigitado.focus();
 
     let segredo = sorteia(10);
 
@@ -29,7 +29,7 @@
 
     if (tentativas < 3) {
 
-        if(input.value == segredo) {
+        if(numeroDigitado.value == segredo) {
 
         alert("Você Acertou! Eu pensei em " + segredo);       
 
@@ -42,8 +42,8 @@
 
     }
 
-    input.value = "";
-    input.focus();
+    numeroDigitado.value = "";
+    numeroDigitado.focus();
 
     }
 
@@ -51,4 +51,3 @@
     button.onclick = verifica;
 
 </script>
-
